@@ -1,0 +1,21 @@
+{
+  "name": "movie-booking-app-backend",
+  "version": "1.0.0",
+  "description": "This is backend API application for movie booking, similiar to others apps like paytm movie booking , bookmyshow",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "shubh",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
