@@ -3,11 +3,13 @@ import dotenv from 'dotenv'
 import mongoose from "mongoose";
 dotenv.config()
 
+import MovieRoutes from './src/routes/movie.routes.js'
+
 const app=express()
 
 app.use(express.json())
-
-
+app.use(express.urlencoded({ extended: true }))
+MovieRoutes(app)
 
 app.get('/home',(req,res)=>{
     return res.json({success:true,message:"Welcome to movie booking app"})
