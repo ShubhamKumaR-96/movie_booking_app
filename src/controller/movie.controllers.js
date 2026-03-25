@@ -1,5 +1,5 @@
 import Movie from "../models/movie.model.js";
-import { createMovieService, getMovieById } from "../service/movie.service.js";
+import { createMovieService, getMovieById, updateMovieService, } from "../service/movie.service.js";
 import { errResponseBody, successResponseBody } from "../utils/responseBody.js";
 
 
@@ -41,6 +41,19 @@ export const getMovie=async(req,res)=>{
         return res.status(200).json(successResponseBody)
     } catch (error) {
         console.log(error)
+        return res.status(500).json(errResponseBody)
+    }
+}
+
+export const updateMovie=async(req,res)=>{
+    try {
+        const movie=await updateMovieService(req.params.id , req.body);
+        successResponseBody.data=movie
+
+        return res.status(200).json(successResponseBody)
+    } catch (error) {
+        console.log("Error while updating movie")
+        errResponseBody.err=error
         return res.status(500).json(errResponseBody)
     }
 }
