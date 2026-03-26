@@ -55,3 +55,18 @@ export const updateMovieService = async (id, data) => {
     }
   }
 };
+
+export const fetchMovies=async(filter)=>{
+  const query={}
+  if(filter.name){
+    query.name=filter.name
+  }
+  let movies=await Movie.find(query)
+  if(!movies || movies.length==0){
+    return {
+      err:"Not able to find the queries movies",
+      code:404
+    }
+  }
+  return movies
+}

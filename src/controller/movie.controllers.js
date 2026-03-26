@@ -1,5 +1,5 @@
 import Movie from "../models/movie.model.js";
-import { createMovieService, getMovieById, updateMovieService, } from "../service/movie.service.js";
+import { createMovieService, fetchMovies, getMovieById, updateMovieService, } from "../service/movie.service.js";
 import { errResponseBody, successResponseBody } from "../utils/responseBody.js";
 
 
@@ -53,6 +53,22 @@ export const updateMovie=async(req,res)=>{
         return res.status(200).json(successResponseBody)
     } catch (error) {
         console.log("Error while updating movie")
+        errResponseBody.err=error
+        return res.status(500).json(errResponseBody)
+    }
+}
+
+export const getMovies=async(req,res)=>{
+    try {
+        const response=await fetchMovies(req.query)
+        if(response.err){
+            errResponseBody.err=response.err
+            return res.status(response.code).json(errResponseBody)
+        }
+        successResponseBody.data=response
+        return res.status(200).json(successResponseBody)
+    } catch (error) {
+        console.log("error while fetching movie",error)
         errResponseBody.err=error
         return res.status(500).json(errResponseBody)
     }
